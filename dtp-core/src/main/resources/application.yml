@@ -1,7 +1,0 @@
-spring:
-  dtp:
-    executors:
-      - poolName: p1
-        corePoolSize: 5
-        maximumPoolSize: 10
-        keepAliveTime: 5

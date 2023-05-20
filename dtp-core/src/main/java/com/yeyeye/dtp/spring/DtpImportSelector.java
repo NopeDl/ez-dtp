@@ -11,8 +11,8 @@ public class DtpImportSelector implements DeferredImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
         return new String[]{
-                DtpConfig.class.getName(),
-                DtpImportBeanDefinitionRegistrar.class.getName()
+                DtpImportBeanDefinitionRegistrar.class.getName(),
+                DtpBeanPostProcessor.class.getName()
         };
     }
 }

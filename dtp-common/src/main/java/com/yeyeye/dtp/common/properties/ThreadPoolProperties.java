@@ -14,6 +14,11 @@ public class ThreadPoolProperties {
     private String poolType = "common";
 
     /**
+     * 是否为守护线程
+     */
+    private boolean isDaemon = false;
+
+    /**
      * 以下都是核心参数
      */
     private int corePoolSize = 1;
@@ -22,6 +27,6 @@ public class ThreadPoolProperties {
     private TimeUnit timeUnit = TimeUnit.SECONDS;
     private String queueType = "arrayBlockingQueue";
     private int queueSize = 5;
-    private String threadFactory;
+    private String threadFactoryPrefix = "dtp";
     private String RejectedExecutionHandler;
 }

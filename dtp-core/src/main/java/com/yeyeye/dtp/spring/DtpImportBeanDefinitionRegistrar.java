@@ -1,11 +1,13 @@
 package com.yeyeye.dtp.spring;
 
-import com.yeyeye.dtp.enums.ExecutorType;
-import com.yeyeye.dtp.enums.QueueType;
+import cn.hutool.core.thread.NamedThreadFactory;
+import cn.hutool.core.thread.RejectPolicy;
+import com.yeyeye.dtp.common.properties.DtpProperties;
 import com.yeyeye.dtp.common.properties.ThreadPoolProperties;
 import com.yeyeye.dtp.common.utils.BeanUtil;
-import com.yeyeye.dtp.common.properties.DtpProperties;
 import com.yeyeye.dtp.common.utils.ResourceBundlerUtil;
+import com.yeyeye.dtp.enums.ExecutorType;
+import com.yeyeye.dtp.enums.QueueType;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
@@ -42,8 +44,9 @@ public class DtpImportBeanDefinitionRegistrar implements ImportBeanDefinitionReg
                 executorProp.getKeepAliveTime(),
                 executorProp.getTimeUnit(),
                 QueueType.getInstance(executorProp.getQueueType(), executorProp.getQueueSize()),
-                executorProp.getThreadFactory(),
-                executorProp.getRejectedExecutionHandler()
+                new NamedThreadFactory(executorProp.getThreadFactoryPrefix(), executorProp.isDaemon()),
+                //先默认不做设置
+                RejectPolicy.ABORT.getValue()
         };
     }
 
