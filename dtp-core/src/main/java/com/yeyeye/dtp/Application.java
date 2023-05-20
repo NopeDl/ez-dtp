@@ -1,6 +1,6 @@
-package com.yeyeye.dtp.common;
+package com.yeyeye.dtp;
 
-import com.yeyeye.dtp.common.core.EnableDynamicThreadPool;
+import com.yeyeye.dtp.core.EnableDynamicThreadPool;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

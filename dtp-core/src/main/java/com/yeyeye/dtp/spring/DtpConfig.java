@@ -1,6 +1,5 @@
-package com.yeyeye.dtp.common.spring;
+package com.yeyeye.dtp.spring;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**

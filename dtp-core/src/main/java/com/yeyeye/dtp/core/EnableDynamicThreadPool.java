@@ -1,6 +1,6 @@
-package com.yeyeye.dtp.common.core;
+package com.yeyeye.dtp.core;
 
-import com.yeyeye.dtp.common.spring.DtpImportSelector;
+import com.yeyeye.dtp.spring.DtpImportSelector;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

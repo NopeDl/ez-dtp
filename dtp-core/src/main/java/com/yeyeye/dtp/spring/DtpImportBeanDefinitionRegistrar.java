@@ -1,7 +1,7 @@
-package com.yeyeye.dtp.common.spring;
+package com.yeyeye.dtp.spring;
 
-import com.yeyeye.dtp.common.enums.ExecutorType;
-import com.yeyeye.dtp.common.enums.QueueType;
+import com.yeyeye.dtp.enums.ExecutorType;
+import com.yeyeye.dtp.enums.QueueType;
 import com.yeyeye.dtp.common.properties.ThreadPoolProperties;
 import com.yeyeye.dtp.common.utils.BeanUtil;
 import com.yeyeye.dtp.common.properties.DtpProperties;

@@ -1,11 +1,11 @@
-package com.yeyeye.dtp.common.core;
+package com.yeyeye.dtp.core;
 
 import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.yeyeye.dtp.common.properties.DtpPropertiesConstant;
-import com.yeyeye.dtp.common.support.ExecutorAdapter;
-import com.yeyeye.dtp.common.support.ExecutorWrapper;
+import com.yeyeye.dtp.support.ExecutorAdapter;
+import com.yeyeye.dtp.support.ExecutorWrapper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;

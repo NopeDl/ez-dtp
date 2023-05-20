@@ -1,6 +1,6 @@
-package com.yeyeye.dtp.common.enums;
+package com.yeyeye.dtp.enums;
 
-import com.yeyeye.dtp.common.support.pool.DtpExecutor;
+import com.yeyeye.dtp.support.pool.DtpExecutor;
 
 import java.util.HashMap;
 import java.util.Map;

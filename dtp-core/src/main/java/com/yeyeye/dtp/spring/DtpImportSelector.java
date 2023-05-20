@@ -1,4 +1,4 @@
-package com.yeyeye.dtp.common.spring;
+package com.yeyeye.dtp.spring;
 
 import org.springframework.context.annotation.DeferredImportSelector;
 import org.springframework.core.type.AnnotationMetadata;

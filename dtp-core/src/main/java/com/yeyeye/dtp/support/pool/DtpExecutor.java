@@ -1,6 +1,6 @@
-package com.yeyeye.dtp.common.support.pool;
+package com.yeyeye.dtp.support.pool;
 
-import com.yeyeye.dtp.common.support.ExecutorAdapter;
+import com.yeyeye.dtp.support.ExecutorAdapter;
 
 import java.util.concurrent.*;
 
