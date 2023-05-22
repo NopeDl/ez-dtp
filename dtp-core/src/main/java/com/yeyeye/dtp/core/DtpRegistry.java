@@ -4,13 +4,14 @@ import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.yeyeye.dtp.common.properties.DtpPropertiesConstant;
-import com.yeyeye.dtp.support.ExecutorAdapter;
-import com.yeyeye.dtp.support.ExecutorWrapper;
+import com.yeyeye.dtp.common.support.ExecutorAdapter;
+import com.yeyeye.dtp.common.support.ExecutorWrapper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executor;
 
 /**
  * 管理线程池
@@ -30,11 +31,19 @@ public class DtpRegistry {
         ExecutorWrapper executorWrapper = wrap(executorName, executorAdapter);
         //注册
         EXECUTOR_MAP.put(executorName, executorWrapper);
-        log.info("注册线程池成功：{}, 实例：{}", executorName, executorWrapper);
+        log.info("注册线程池成功：{}，核心线程数：{}，最大线程数：{}，任务队列：{}",
+                executorName,
+                executorAdapter.getCorePoolSize(),
+                executorAdapter.getMaximumPoolSize(),
+                executorAdapter.getQueue());
     }
 
-    public static ExecutorWrapper getExecutor(String executorName) {
-        return EXECUTOR_MAP.get(executorName);
+    public static Executor getExecutor(String executorName) {
+        ExecutorWrapper executorWrapper = EXECUTOR_MAP.get(executorName);
+        if (executorWrapper == null) {
+            throw new NullPointerException("不存在此线程池,{" + executorName + "}");
+        }
+        return executorWrapper.getExecutor();
     }
 
     public static void refresh(String executorName, Map<String, Object> properties) {

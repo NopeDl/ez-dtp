@@ -1,4 +1,4 @@
-package com.yeyeye.dtp.enums;
+package com.yeyeye.dtp.common.enums;
 
 import cn.hutool.core.util.ReflectUtil;
 

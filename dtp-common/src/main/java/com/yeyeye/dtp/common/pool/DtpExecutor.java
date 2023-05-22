@@ -1,6 +1,7 @@
-package com.yeyeye.dtp.support.pool;
+package com.yeyeye.dtp.common.pool;
 
-import com.yeyeye.dtp.support.ExecutorAdapter;
+import com.yeyeye.dtp.common.support.ExecutorAdapter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
 
@@ -8,6 +9,7 @@ import java.util.concurrent.*;
  * @author yeyeye
  * @Date 2023/5/19 22:10
  */
+@Slf4j
 public class DtpExecutor extends ThreadPoolExecutor implements ExecutorAdapter<ThreadPoolExecutor> {
     public DtpExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
@@ -28,5 +30,11 @@ public class DtpExecutor extends ThreadPoolExecutor implements ExecutorAdapter<T
     @Override
     public ThreadPoolExecutor getOrigins() {
         return this;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        log.info("线程池已被关闭");
+        this.shutdown();
     }
 }

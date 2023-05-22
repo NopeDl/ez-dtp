@@ -1,4 +1,4 @@
-package com.yeyeye.dtp.support;
+package com.yeyeye.dtp.common.support;
 
 import lombok.Builder;
 import lombok.Data;

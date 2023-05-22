@@ -1,4 +1,6 @@
-package com.yeyeye.dtp.support;
+package com.yeyeye.dtp.common.support;
+
+import org.springframework.beans.factory.DisposableBean;
 
 import java.util.concurrent.*;
 
@@ -6,7 +8,7 @@ import java.util.concurrent.*;
  * @author yeyeye
  * @Date 2023/5/19 22:14
  */
-public interface ExecutorAdapter<T extends Executor> extends Executor {
+public interface ExecutorAdapter<T extends Executor> extends Executor, DisposableBean {
     /**
      * 获取源线程池
      *
@@ -23,7 +25,7 @@ public interface ExecutorAdapter<T extends Executor> extends Executor {
 
     int getCorePoolSize();
 
-    void setMaximumPoolSize(int corePoolSize);
+    void setMaximumPoolSize(int maximumPoolSize);
 
     int getMaximumPoolSize();
 

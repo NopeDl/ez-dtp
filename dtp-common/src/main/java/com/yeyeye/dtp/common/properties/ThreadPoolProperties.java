@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.THREAD_FACTORY_PREFIX;
+
 /**
  * @author yeyeye
  * @Date 2023/5/20 14:46
@@ -27,6 +29,6 @@ public class ThreadPoolProperties {
     private TimeUnit timeUnit = TimeUnit.SECONDS;
     private String queueType = "arrayBlockingQueue";
     private int queueSize = 5;
-    private String threadFactoryPrefix = "dtp";
+    private String threadFactoryPrefix = THREAD_FACTORY_PREFIX;
     private String RejectedExecutionHandler;
 }

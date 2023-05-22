@@ -1,6 +1,6 @@
 package com.yeyeye.dtp.core;
 
-import com.yeyeye.dtp.support.pool.DtpExecutor;
+import com.yeyeye.dtp.common.pool.DtpExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

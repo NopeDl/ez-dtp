@@ -11,6 +11,11 @@ public class DtpPropertiesConstant {
     public static final String PROPERTIES_PREFIX = "spring.dtp";
 
     /**
+     * 属性前缀
+     */
+    public static final String THREAD_FACTORY_PREFIX = "-td-";
+
+    /**
      * 线程池核心参数
      */
     public static final String POOL_NAME = "poolName";
