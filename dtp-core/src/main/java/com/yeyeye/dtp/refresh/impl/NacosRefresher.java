@@ -12,6 +12,8 @@ import com.yeyeye.dtp.refresh.AbstractRefresher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -54,7 +56,7 @@ public class NacosRefresher extends AbstractRefresher implements Listener, Initi
     }
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         EXECUTOR.shutdown();
     }
 }

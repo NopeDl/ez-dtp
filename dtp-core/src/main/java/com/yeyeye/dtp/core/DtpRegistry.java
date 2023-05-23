@@ -78,6 +78,11 @@ public class DtpRegistry {
                 log.info("刷新失败，线程池参数有误! {}, 错误参数：{}， 值：{}", executorName, property, value);
             }
         }
+        log.info("刷新线程池成功：{}，核心线程数：{}，最大线程数：{}，任务队列：{}",
+                executorName,
+                executor.getCorePoolSize(),
+                executor.getMaximumPoolSize(),
+                executor.getQueue());
     }
 
     /**

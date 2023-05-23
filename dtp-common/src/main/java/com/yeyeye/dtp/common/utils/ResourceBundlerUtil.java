@@ -4,8 +4,14 @@ import com.yeyeye.dtp.common.properties.DtpProperties;
 import com.yeyeye.dtp.common.properties.DtpPropertiesConstant;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.context.properties.source.ConfigurationPropertySource;
+import org.springframework.boot.context.properties.source.MapConfigurationPropertySource;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.env.Environment;
+
+import java.util.Map;
+
+import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.PROPERTIES_PREFIX;
 
 /**
  * @author yeyeye
@@ -16,6 +22,14 @@ public class ResourceBundlerUtil {
         Binder binder = Binder.get(environment);
         ResolvableType resolvableType = ResolvableType.forClass(DtpProperties.class);
         Bindable<Object> bindable = Bindable.of(resolvableType).withExistingValue(dtpProperties);
-        binder.bind(DtpPropertiesConstant.PROPERTIES_PREFIX, bindable);
+        binder.bind(PROPERTIES_PREFIX, bindable);
+    }
+
+    public static void bindDtpProperties(Map<?, Object> properties, DtpProperties dtpProperties) {
+        ConfigurationPropertySource sources = new MapConfigurationPropertySource(properties);
+        Binder binder = new Binder(sources);
+        ResolvableType type = ResolvableType.forClass(DtpProperties.class);
+        Bindable<?> target = Bindable.of(type).withExistingValue(dtpProperties);
+        binder.bind(PROPERTIES_PREFIX, target);
     }
 }
