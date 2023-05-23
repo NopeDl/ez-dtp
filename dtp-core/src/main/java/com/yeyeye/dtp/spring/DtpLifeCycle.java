@@ -1,13 +1,20 @@
 package com.yeyeye.dtp.spring;
 
+import cn.hutool.core.util.ArrayUtil;
+import com.yeyeye.dtp.common.properties.DtpProperties;
+import com.yeyeye.dtp.common.properties.ThreadPoolProperties;
+import com.yeyeye.dtp.core.DtpRegistry;
 import com.yeyeye.dtp.refresh.Refresher;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.SmartLifecycle;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author yeyeye
@@ -16,14 +23,20 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 public class DtpLifeCycle implements SmartLifecycle {
     private final AtomicBoolean isRunning = new AtomicBoolean(false);
-
     @Resource
-    private Refresher refresher;
+    private DtpProperties dtpProperties;
 
     @Override
     public void start() {
         if (isRunning.compareAndSet(false, true)) {
             log.info("lifecycle start");
+            //同步远端配置
+            List<ThreadPoolProperties> executors = dtpProperties.getExecutors();
+            if (!ArrayUtil.isEmpty(executors)) {
+                for (ThreadPoolProperties executor : executors) {
+                    DtpRegistry.refresh(executor.getPoolName(), executor);
+                }
+            }
         }
     }
 

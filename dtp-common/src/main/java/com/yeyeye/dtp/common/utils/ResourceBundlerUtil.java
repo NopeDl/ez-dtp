@@ -1,7 +1,6 @@
 package com.yeyeye.dtp.common.utils;
 
 import com.yeyeye.dtp.common.properties.DtpProperties;
-import com.yeyeye.dtp.common.properties.DtpPropertiesConstant;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.context.properties.source.ConfigurationPropertySource;
@@ -25,7 +24,7 @@ public class ResourceBundlerUtil {
         binder.bind(PROPERTIES_PREFIX, bindable);
     }
 
-    public static void bindDtpProperties(Map<?, Object> properties, DtpProperties dtpProperties) {
+    public static void bind(Map<?, Object> properties, DtpProperties dtpProperties) {
         ConfigurationPropertySource sources = new MapConfigurationPropertySource(properties);
         Binder binder = new Binder(sources);
         ResolvableType type = ResolvableType.forClass(DtpProperties.class);

@@ -4,14 +4,19 @@ import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.yeyeye.dtp.common.properties.DtpPropertiesConstant;
+import com.yeyeye.dtp.common.properties.ThreadPoolProperties;
 import com.yeyeye.dtp.common.support.ExecutorAdapter;
 import com.yeyeye.dtp.common.support.ExecutorWrapper;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
+
+import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.CORE_POOL_SIZE;
+import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.MAXIMUM_POOL_SIZE;
 
 /**
  * 管理线程池
@@ -46,6 +51,11 @@ public class DtpRegistry {
         return executorWrapper.getExecutor();
     }
 
+    public static void refresh(String executorName, ThreadPoolProperties properties) {
+        Map<String, Object> map = new HashMap<>();
+        refresh(executorName, assembleParams(properties));
+    }
+
     public static void refresh(String executorName, Map<String, Object> properties) {
         ExecutorWrapper executorWrapper = EXECUTOR_MAP.get(executorName);
         if (Objects.isNull(executorWrapper)) {
@@ -53,6 +63,10 @@ public class DtpRegistry {
             return;
         }
         ExecutorAdapter<?> executor = executorWrapper.getExecutor();
+        //记录原数据
+        int oldCorePoolSize = executor.getCorePoolSize();
+        int oldMaximumPoolSize = executor.getMaximumPoolSize();
+        int oldQueueSize = executor.getQueue().size();
         //先处理最大线程数
         Object maximumPoolSize = properties.get(DtpPropertiesConstant.MAXIMUM_POOL_SIZE);
         if (!Objects.isNull(maximumPoolSize)) {
@@ -78,11 +92,12 @@ public class DtpRegistry {
                 log.info("刷新失败，线程池参数有误! {}, 错误参数：{}， 值：{}", executorName, property, value);
             }
         }
-        log.info("刷新线程池成功：{}，核心线程数：{}，最大线程数：{}，任务队列：{}",
+        log.info("刷新线程池成功：{}，核心线程数：{} -> {}，最大线程数：{} -> {}",
                 executorName,
+                oldCorePoolSize,
                 executor.getCorePoolSize(),
-                executor.getMaximumPoolSize(),
-                executor.getQueue());
+                oldMaximumPoolSize,
+                executor.getMaximumPoolSize());
     }
 
     /**
@@ -97,5 +112,12 @@ public class DtpRegistry {
                 .executorName(executorName)
                 .executor(executorAdapter)
                 .build();
+    }
+
+    private static Map<String, Object> assembleParams(ThreadPoolProperties threadPoolProperties) {
+        Map<String, Object> res = new HashMap<>();
+        res.put(MAXIMUM_POOL_SIZE, threadPoolProperties.getMaximumPoolSize());
+        res.put(CORE_POOL_SIZE, threadPoolProperties.getCorePoolSize());
+        return res;
     }
 }
