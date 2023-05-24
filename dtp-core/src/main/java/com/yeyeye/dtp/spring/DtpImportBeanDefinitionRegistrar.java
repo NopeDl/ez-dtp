@@ -22,9 +22,8 @@ import java.util.Objects;
  * @Date 2023/5/19 23:52
  */
 @Slf4j
-public class DtpImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware, BeanFactoryAware {
+public class DtpImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
     private Environment environment;
-    private BeanFactory beanFactory;
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
@@ -47,10 +46,5 @@ public class DtpImportBeanDefinitionRegistrar implements ImportBeanDefinitionReg
     @Override
     public void setEnvironment(Environment environment) {
         this.environment = environment;
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.beanFactory = beanFactory;
     }
 }
