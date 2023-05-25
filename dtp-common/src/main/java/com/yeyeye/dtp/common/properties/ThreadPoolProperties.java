@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.THREAD_FACTORY_PREFIX;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.THREAD_FACTORY_PREFIX;
 
 /**
  * @author yeyeye

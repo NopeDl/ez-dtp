@@ -1,6 +1,7 @@
 package com.yeyeye.dtp.spring;
 
 import com.yeyeye.dtp.common.properties.DtpProperties;
+import com.yeyeye.dtp.monitor.DtpMonitor;
 import com.yeyeye.dtp.refresh.impl.NacosRefresher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,7 +17,17 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(DtpProperties.class)
 public class DtpConfiguration {
     @Bean
-    NacosRefresher nacosRefresher() {
+    public NacosRefresher nacosRefresher() {
         return new NacosRefresher();
+    }
+
+    @Bean
+    public DtpEndPoint dtpEndPoint() {
+        return new DtpEndPoint();
+    }
+
+    @Bean
+    public DtpMonitor dtpMonitor() {
+        return new DtpMonitor();
     }
 }

@@ -47,6 +47,21 @@ public class ThreadPoolExecutorAdapter implements ExecutorAdapter<ThreadPoolExec
     }
 
     @Override
+    public long getTaskNum() {
+        return getOrigins().getTaskCount();
+    }
+
+    @Override
+    public int getQueueSize() {
+        return getOrigins().getQueue().size();
+    }
+
+    @Override
+    public int getQueueRemainingCapacity() {
+        return getOrigins().getQueue().remainingCapacity();
+    }
+
+    @Override
     public void setKeepAliveTime(long keepAliveTime, TimeUnit timeUnit) {
         threadPoolExecutor.setKeepAliveTime(keepAliveTime, timeUnit);
     }

@@ -28,6 +28,21 @@ public class DtpExecutor extends ThreadPoolExecutor implements ExecutorAdapter<T
     }
 
     @Override
+    public long getTaskNum() {
+        return getTaskCount();
+    }
+
+    @Override
+    public int getQueueSize() {
+        return getQueue().size();
+    }
+
+    @Override
+    public int getQueueRemainingCapacity() {
+        return getQueue().remainingCapacity();
+    }
+
+    @Override
     public ThreadPoolExecutor getOrigins() {
         return this;
     }

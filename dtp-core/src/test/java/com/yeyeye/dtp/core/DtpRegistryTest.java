@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.CORE_POOL_SIZE;
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.MAXIMUM_POOL_SIZE;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.CORE_POOL_SIZE;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.MAXIMUM_POOL_SIZE;
 
 
 /**

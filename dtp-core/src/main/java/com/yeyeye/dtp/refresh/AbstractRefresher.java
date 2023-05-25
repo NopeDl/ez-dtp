@@ -8,11 +8,9 @@ import com.yeyeye.dtp.common.utils.ParseUtil;
 import com.yeyeye.dtp.common.utils.ResourceBundlerUtil;
 import com.yeyeye.dtp.core.DtpRegistry;
 import lombok.extern.slf4j.Slf4j;
-import org.yaml.snakeyaml.Yaml;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author yeyeye

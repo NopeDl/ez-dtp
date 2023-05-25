@@ -1,4 +1,4 @@
-package com.yeyeye.dtp.common.properties;
+package com.yeyeye.dtp.common.constant;
 
 /**
  * @author yeyeye

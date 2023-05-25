@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.PROPERTIES_PREFIX;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.PROPERTIES_PREFIX;
 
 /**
  * @author yeyeye
@@ -14,6 +14,9 @@ import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.PROPERTIES_
 @Data
 @ConfigurationProperties(prefix = PROPERTIES_PREFIX)
 public class DtpProperties {
+    private boolean enableMonitor = false;
+
+    private long collectInterval = 5;
     private List<ThreadPoolProperties> executors;
 
     private NacosProperties nacos;

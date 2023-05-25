@@ -3,20 +3,19 @@ package com.yeyeye.dtp.core;
 import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.yeyeye.dtp.common.properties.DtpPropertiesConstant;
+import com.yeyeye.dtp.common.constant.DtpPropertiesConstant;
 import com.yeyeye.dtp.common.properties.ThreadPoolProperties;
 import com.yeyeye.dtp.common.support.ExecutorAdapter;
 import com.yeyeye.dtp.common.support.ExecutorWrapper;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
+import java.util.stream.Collectors;
 
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.CORE_POOL_SIZE;
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.MAXIMUM_POOL_SIZE;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.CORE_POOL_SIZE;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.MAXIMUM_POOL_SIZE;
 
 /**
  * 管理线程池
@@ -43,7 +42,19 @@ public class DtpRegistry {
                 executorAdapter.getQueue());
     }
 
+    public static Set<String> listAll() {
+        return EXECUTOR_MAP.keySet();
+    }
+
     public static Executor getExecutor(String executorName) {
+        ExecutorWrapper executorWrapper = EXECUTOR_MAP.get(executorName);
+        if (executorWrapper == null) {
+            throw new NullPointerException("不存在此线程池,{" + executorName + "}");
+        }
+        return executorWrapper.getExecutor();
+    }
+
+    public static ExecutorAdapter<?> getExecutorAdapter(String executorName) {
         ExecutorWrapper executorWrapper = EXECUTOR_MAP.get(executorName);
         if (executorWrapper == null) {
             throw new NullPointerException("不存在此线程池,{" + executorName + "}");

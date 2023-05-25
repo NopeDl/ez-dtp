@@ -31,6 +31,11 @@ public interface ExecutorAdapter<T extends Executor> extends Executor, Disposabl
 
     int getLargestPoolSize();
 
+    long getTaskNum();
+    int getQueueSize();
+
+    int getQueueRemainingCapacity();
+
     void setKeepAliveTime(long keepAliveTime, TimeUnit timeUnit);
 
     void setThreadFactory(ThreadFactory threadFactory);

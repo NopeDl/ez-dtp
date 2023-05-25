@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 
 import java.util.Map;
 
-import static com.yeyeye.dtp.common.properties.DtpPropertiesConstant.PROPERTIES_PREFIX;
+import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.PROPERTIES_PREFIX;
 
 /**
  * @author yeyeye

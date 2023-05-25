@@ -12,6 +12,7 @@
         <module>dtp-common</module>
         <module>example</module>
         <module>dtp-dependencies</module>
+        <module>dtp-admin</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
