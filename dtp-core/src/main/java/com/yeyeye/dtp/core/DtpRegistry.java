@@ -9,10 +9,12 @@ import com.yeyeye.dtp.common.support.ExecutorAdapter;
 import com.yeyeye.dtp.common.support.ExecutorWrapper;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
-import java.util.stream.Collectors;
 
 import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.CORE_POOL_SIZE;
 import static com.yeyeye.dtp.common.constant.DtpPropertiesConstant.MAXIMUM_POOL_SIZE;
@@ -42,6 +44,10 @@ public class DtpRegistry {
                 executorAdapter.getQueue());
     }
 
+    /**
+     * 列出所有线程池
+     * @return 线程池集合
+     */
     public static Set<String> listAll() {
         return EXECUTOR_MAP.keySet();
     }
@@ -62,6 +68,11 @@ public class DtpRegistry {
         return executorWrapper.getExecutor();
     }
 
+    /**
+     * 刷新线程池参数
+     * @param executorName 线程池名字
+     * @param properties 线程池参数
+     */
     public static void refresh(String executorName, ThreadPoolProperties properties) {
         Map<String, Object> map = new HashMap<>();
         refresh(executorName, assembleParams(properties));

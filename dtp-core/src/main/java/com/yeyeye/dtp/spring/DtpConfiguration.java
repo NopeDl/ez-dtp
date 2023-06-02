@@ -22,11 +22,6 @@ public class DtpConfiguration {
     }
 
     @Bean
-    public DtpEndPoint dtpEndPoint() {
-        return new DtpEndPoint();
-    }
-
-    @Bean
     public DtpMonitor dtpMonitor() {
         return new DtpMonitor();
     }
